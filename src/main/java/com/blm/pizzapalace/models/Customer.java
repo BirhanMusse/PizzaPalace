@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="CUSTOMER")
 public class Customer {
@@ -26,6 +28,7 @@ public class Customer {
 	@Column(name="id")
 	private Integer id;
 
+	@JsonManagedReference
 	@OneToOne (mappedBy = "customer")
 	private Cart cart;
 	

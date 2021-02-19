@@ -23,9 +23,12 @@ public class Topping {
 	@Column
 	private String name;
 	
-	@ManyToMany(mappedBy = "toppings")
-	private Set <Item> item;
 	
+//	@ManyToMany(mappedBy = "toppings")
+//	private Set <Item> item;
+	
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -50,12 +53,12 @@ public class Topping {
 		this.name = name;
 	}
 
-	public Set<Item> getItem() {
-		return item;
-	}
-
-	public void setItem(Set<Item> item) {
-		this.item = item;
-	}
+//	public Set<Item> getItem() {
+//		return item;
+//	}
+//
+//	public void setItem(Set<Item> item) {
+//		this.item = item;
+//	}
 	
 }

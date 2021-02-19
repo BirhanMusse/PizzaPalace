@@ -1,5 +1,6 @@
 package com.blm.pizzapalace.models;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -7,15 +8,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,32 +27,21 @@ public class Item {
     @Column(name = "id")
 	private Integer id;
 
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable( name = "item_toppings",
+	
 			joinColumns = @JoinColumn (name="item_id"),
 			inverseJoinColumns = @JoinColumn(name = "topping_id")
 			)
-	Set <Topping> toppings;
+	List <Topping> toppings;
 
 	@Enumerated(EnumType.STRING)
 	@JoinColumn(name = "category_id", referencedColumnName = "id")
 	private ECategory category;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "Item_Cart",
-			joinColumns = @JoinColumn(name="item_id"),
-			inverseJoinColumns = @JoinColumn(name="cart_id")
-			)
-	private Set<Cart> carts;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Cart cart;
 	
-	public Set<Cart> getCarts() {
-		return carts;
-	}
-
-	public void setCarts(Set<Cart> carts) {
-		this.carts = carts;
-	}
 
 	@Column
 	private String name;
@@ -70,15 +60,23 @@ public class Item {
 		return id;
 	}
 
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Set<Topping> getToppings() {
+	public List<Topping> getToppings() {
 		return toppings;
 	}
 
-	public void setToppings(Set<Topping> toppings) {
+	public void setToppings(List<Topping> toppings) {
 		this.toppings = toppings;
 	}
 

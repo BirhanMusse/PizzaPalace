@@ -9,9 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="CART")
@@ -22,7 +26,7 @@ public class Cart {
     @Column(name = "id")
 	private Integer id;
 	
-
+	@JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id", referencedColumnName = "id")
 	private Customer customer;
@@ -30,7 +34,12 @@ public class Cart {
 	@OneToOne(mappedBy="cart")
 	private Order order;
 
-	@ManyToMany(mappedBy="carts")
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinTable(
+			name = "Cart_Item",
+			joinColumns = @JoinColumn(name="cart_id"),
+			inverseJoinColumns = @JoinColumn(name="item_id")
+			)
 	private List <Item> item;
 	
 	public List<Item> getItem() {
