@@ -32,6 +32,7 @@ public class Customer {
 	@OneToOne (mappedBy = "customer")
 	private Cart cart;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy= "customer")
 	private List <Order> order;
 

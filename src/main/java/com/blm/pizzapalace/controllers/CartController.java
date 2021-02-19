@@ -27,7 +27,13 @@ public class CartController {
 	
 	@GetMapping("/get")
 	public List<Cart> getAll(){
-		return cartRepo.findAll();
+		List<Cart> carts = cartRepo.findAll();
+		return carts;
+	}
+	
+	@GetMapping("/get/{id}")
+	public Cart getById(@PathVariable("id") Integer id){
+		return cartRepo.findById(id).get();
 	}
 	
 	@PutMapping("/addItem")

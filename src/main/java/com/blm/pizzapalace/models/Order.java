@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "ORDERS")
 public class Order {
@@ -24,27 +27,31 @@ public class Order {
 
 	@Column
 	private String orderDate;
-	
-	@Column
-	private String status; 
 	 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "customer_id", referencedColumnName = "id")
 	private Customer customer;
 
-	 
+	@JsonBackReference
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id", referencedColumnName = "id")
 	private Cart cart;
 
+	
+	
+//	@JsonBackReference
+//  @OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "customer_id", referencedColumnName = "id")
+//	private Customer customer;
+//	
+//	
+//	@JsonManagedReference
+//	@OneToOne (mappedBy = "customer")
+//	private Cart cart;
+	
+	
+	
 	 
 	public Integer getId() {
 		return id;

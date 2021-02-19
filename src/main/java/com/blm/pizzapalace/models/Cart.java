@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="CART")
@@ -31,8 +32,25 @@ public class Cart {
 	@JoinColumn(name = "customer_id", referencedColumnName = "id")
 	private Customer customer;
 	
+	@JsonManagedReference
 	@OneToOne(mappedBy="cart")
 	private Order order;
+	
+	
+	
+	
+//	@JsonBackReference
+//  @OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "customer_id", referencedColumnName = "id")
+//	private Customer customer;
+//	
+//	
+//	@JsonManagedReference
+//	@OneToOne (mappedBy = "customer")
+//	private Cart cart;
+	
+	
+	
 
 	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinTable(
