@@ -32,8 +32,30 @@ public class CartController {
 	}
 	
 	@GetMapping("/get/{id}")
-	public Cart getById(@PathVariable("id") Integer id){
-		return cartRepo.findById(id).get();
+	public List<Cart> getById(@PathVariable("id") Integer id){
+		List <Cart> carts = cartRepo.findByCustomer_Id(id);
+		System.out.println("SYSOUT BELOW");
+		System.out.println("SYSOUT BELOW");
+System.out.println(carts);
+		
+		System.out.println("SYSOUT ABOVE");
+		System.out.println("SYSOUT ABOVE");
+		return carts;
+		//return cartRepo.findById(id).get();
+	}
+	
+	@GetMapping("/getbycust/{id}")
+	public List<Cart> getBycust(@PathVariable("id") Integer id){
+		List <Cart> carts = cartRepo.findByCustomer_Id(id);
+		System.out.println("SYSOUT BELOW");
+		System.out.println("SYSOUT BELOW");
+System.out.println(carts);
+		
+		System.out.println("SYSOUT ABOVE");
+		System.out.println("SYSOUT ABOVE");
+
+		
+		return carts;
 	}
 	
 	@PutMapping("/addItem")

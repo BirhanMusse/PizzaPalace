@@ -8,5 +8,4 @@ import com.blm.pizzapalace.models.Item;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Integer>{
 	
-
 }

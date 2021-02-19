@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -28,15 +29,13 @@ public class Cart {
 	private Integer id;
 	
 	@JsonBackReference
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id", referencedColumnName = "id")
 	private Customer customer;
 	
-	@JsonManagedReference
-	@OneToOne(mappedBy="cart")
-	private Order order;
 	
-	
+	@Column(name = "Order_date")
+	public String date;
 	
 	
 //	@JsonBackReference
@@ -51,6 +50,14 @@ public class Cart {
 	
 	
 	
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinTable(
@@ -84,14 +91,6 @@ public class Cart {
 		this.customer = customer;
 	}
 
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-	
 	
 
 }

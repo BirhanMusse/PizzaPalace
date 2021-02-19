@@ -29,12 +29,9 @@ public class Customer {
 	private Integer id;
 
 	@JsonManagedReference
-	@OneToOne (mappedBy = "customer")
-	private Cart cart;
+	@OneToMany (mappedBy = "customer")
+	private List<Cart> carts;
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy= "customer")
-	private List <Order> order;
 
 	
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -105,20 +102,31 @@ public class Customer {
 		Email = email;
 	}
 
-	public Cart getCart() {
-		return cart;
+
+
+
+	public List<Cart> getCarts() {
+		return carts;
 	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 
-	public List<Order> getOrder() {
-		return order;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setOrder(List<Order> order) {
-		this.order = order;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Integer getPoints() {
