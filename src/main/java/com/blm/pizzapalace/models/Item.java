@@ -1,5 +1,6 @@
 package com.blm.pizzapalace.models;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -35,9 +36,14 @@ public class Item {
 			)
 	List <Topping> toppings;
 
-	@Enumerated(EnumType.STRING)
-	@JoinColumn(name = "category_id", referencedColumnName = "id")
-	private ECategory category;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "Item_Category",
+			joinColumns = @JoinColumn(name="item_id"),
+			inverseJoinColumns = @JoinColumn(name = "category_id")
+			)
+	private Category category;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cart cart;
@@ -80,11 +86,12 @@ public class Item {
 		this.toppings = toppings;
 	}
 
-	public ECategory getCategory() {
+
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(ECategory category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 

@@ -53,7 +53,7 @@ public class Customer {
 	private String password;
 	
 	@Column
-	private String Email;
+	private String email;
 	
 	@Column
 	private String address;
@@ -61,6 +61,15 @@ public class Customer {
 	@Column
 	private Integer points;
 	
+	public Customer () {
+		
+	}
+	
+	public Customer (String username, String email, String password) {
+		this.username=username;
+		this.email=email;
+		this.password=password;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -95,15 +104,12 @@ public class Customer {
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
-
-
-
 
 	public List<Cart> getCarts() {
 		return carts;

@@ -33,14 +33,7 @@ public class CartController {
 	
 	@GetMapping("/get/{id}")
 	public List<Cart> getById(@PathVariable("id") Integer id){
-		List <Cart> carts = cartRepo.findByCustomer_Id(id);
-		System.out.println("SYSOUT BELOW");
-		System.out.println("SYSOUT BELOW");
-System.out.println(carts);
-		
-		System.out.println("SYSOUT ABOVE");
-		System.out.println("SYSOUT ABOVE");
-		return carts;
+		return cartRepo.findByCustomer_Id(id);
 		//return cartRepo.findById(id).get();
 	}
 	

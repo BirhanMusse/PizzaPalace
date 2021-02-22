@@ -1,7 +1,5 @@
 package com.blm.pizzapalace.models;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,26 +7,22 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
 @Entity
-public class Role {
-
-
+public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
-	private ERole name;
+	private ECategory name;
 	
 	
-	public Role() {
+	public Category() {
 		
 	}
 	
-	public Role(ERole name) {
+	public Category(ECategory name) {
 		this.name=name;
 	}
 	
@@ -40,13 +34,14 @@ public class Role {
 		this.id = id;
 	}
 
-	public ERole getName() {
+	public ECategory getName() {
 		return name;
 	}
 
-	public void setName(ERole name) {
+	public void setName(ECategory name) {
 		this.name = name;
 	}
+
 
 
 }
