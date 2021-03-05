@@ -67,7 +67,7 @@ function IndexNavbar() {
         <div className="navbar-translate">
           <NavbarBrand
             data-placement="bottom"
-            href="/profile-page"
+            href="/register-page"
             title="Coded by Creative Tim"
           >
             Login/profile index navbar

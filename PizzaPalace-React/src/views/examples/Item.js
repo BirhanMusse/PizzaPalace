@@ -1,4 +1,5 @@
 import React from 'react'
+import SelectedItemModal from './SelectedItemModal'
 import {
     Button,
     Card,
@@ -17,8 +18,9 @@ const Item = (props) => {
   const toppings = props.toppings.map((toppings,index)=> index==0?toppings:', '+toppings);
   return (
 
-                               
-                               <Card className="card-profile card-plain">
+                  
+                               <Card className="card-profile card-plain" onClick={props.toggle}>
+
                   <div className="card-avatar">
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
                       <img
@@ -69,7 +71,7 @@ const Item = (props) => {
                     </Button>
                   </CardFooter>
                 </Card>
-           
+              
         
     )
 }

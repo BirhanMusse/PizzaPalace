@@ -50,11 +50,11 @@ function LandingPage() {
       document.body.classList.remove("profile-page");
     };
   });
+  function toggle(){console.log("Langing toggle called")};
   return (
     <>
       <IndexNavbar />
       <LandingPageHeader />
-      <SelectedItemModal show={true} />
       <div className="main"
       >
 
@@ -63,9 +63,11 @@ function LandingPage() {
           <Container>
             <h2 className="title">Menu</h2>
 
-<Categories title="Appetizers"/>
+<Categories onclick={toggle} title="Appetizers"/>
+<Categories onclick={toggle} title="Entrees"/>
 
-            <Categories title="Entrees"/>
+
+            {/* <Categories title="Entrees"/> */}
 
           </Container>
           <a

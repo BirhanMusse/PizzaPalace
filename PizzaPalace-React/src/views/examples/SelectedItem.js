@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row } from 'reactstrap';
 import SelectedTopping from './SelectedTopping';
+import Toppings from '../../mockData/Mock-Items';
 const Item = 
     {
         id: 8,
@@ -18,14 +19,14 @@ const topy=["pepperoni","sausage","onions","olives","salami", "mushrooms"];
 //{Item.toppings.map((topping)=> {return(<div>{topping}</div>);})}
 const descrip = ["this pizza has ..."]
 const SelectedItem = (props) => {
-    console.log("called")
+    // Toppings.forEach((currentToppingt)=> console.log(currentToppingt.name))
 
     return (
         <div>
             <div class= "container">
             <div class="row justify-content-center"><h2>Item</h2></div>
             <div class="row justify-content-center">
-{ Item.toppings.map((currentTopping)=> {return (<SelectedTopping price = {Item.price} topping={currentTopping}/>);})}
+{ Toppings.map((currentTopping)=> {return (<SelectedTopping price = {currentTopping.price} topping={currentTopping.name}/>);})}
            
             </div>
                 <div class="row col-5 justify-content-center">

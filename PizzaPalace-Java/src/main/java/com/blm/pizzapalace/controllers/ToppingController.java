@@ -35,7 +35,7 @@ public class ToppingController {
 		return resp;
 	}
 	
-	@GetMapping("/get/all")
+	@GetMapping("/get")
 	public ResponseEntity<List<Topping>> getAll(){
 		ResponseEntity<List<Topping>> resp = null;
 		try {
