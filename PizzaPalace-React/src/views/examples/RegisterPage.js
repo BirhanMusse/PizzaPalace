@@ -26,10 +26,18 @@ import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 
 function RegisterPage() {
   const[registerPage, setRegisterPage]=React.useState(false);
+  const [Email, setEmail]=React.useState("");
   const [username, setUsername]= React.useState("");
   const [password, setPassword]= React.useState("");
   const [loading, setLoading]= React.useState(false);
   const [message, setMessage]= React.useState("");
+  const [confirmPassword, setConfirmPassword]= React.useState("");
+
+ function onUsernameChange(e) {
+   setUsername(e.target.value)
+   console.log("UsernameChanged!")
+ }
+
 
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
@@ -40,6 +48,7 @@ function RegisterPage() {
   });
  
   return (
+
     <>
       <ExamplesNavbar />
       <div
@@ -53,12 +62,12 @@ function RegisterPage() {
    
           {registerPage?
           
-          
+          //Register form
           <Row>
             <Col className="ml-auto mr-auto" lg="4">
               <Card className="card-register ml-auto mr-auto">
                 <h3 className="title mx-auto">Register </h3>
-                <a onClick={()=> setRegisterPage(!RegisterPage)} class="registerNow">Click here to register!</a>
+                <a onClick={()=> setRegisterPage(!RegisterPage)} class="registerNow">Click here to sign in!</a>
                 <div className="social-line text-center">
                   <Button
                     className="btn-neutral btn-just-icon mr-1"
@@ -88,10 +97,24 @@ function RegisterPage() {
                 <Form className="register-form">
                   <label>Email</label>
                   <Input placeholder="Email" type="text" />
+                  <label>Username</label>
+                  <Input 
+                  placeholder="Username" 
+                  type="password" 
+                  onChange={(e)=>{setUsername(e.target.value);console.log(e.target.value)}}
+                  />
                   <label>Password</label>
-                  <Input placeholder="Password" type="password" />
+                  <Input 
+                  placeholder="Password" 
+                  type="password" 
+                  onChange={(e)=>setPassword(e.target.value)}
+                  />
                   <label>Confirm Password</label>
-                  <Input placeholder="Password" type="password" />
+                  <Input 
+                  placeholder="Confirm Password" 
+                  type="password" 
+                  onChange={(e)=>setConfirmPassword(e.target.value)}
+                  />
                   <Button block className="btn-round" color="danger">
                     Register
                   </Button>
@@ -113,11 +136,14 @@ function RegisterPage() {
           
           
           :
+          //Login form
+
           <Row>
             <Col className="ml-auto mr-auto" lg="4">
               <Card className="card-register ml-auto mr-auto">
                 <h3 className="title mx-auto">Welcome </h3>
-                <a onClick={()=> setRegisterPage(!registerPage)} class="registerNow">Click here to register!</a>
+                <a onClick={()=> setRegisterPage(!registerPage)} class="registerNow">Not a member? Click here to register!</a>
+
                 <div className="social-line text-center">
                   <Button
                     className="btn-neutral btn-just-icon mr-1"
@@ -144,11 +170,21 @@ function RegisterPage() {
                     <i className="fa fa-twitter" />
                   </Button>
                 </div>
-                <Form className="register-form">
-                  <label>Email</label>
-                  <Input placeholder="Email" type="text" />
+                <Form 
+                                  className="register-form">
+                  <label>Emailll</label>
+                  <Input 
+                  placeholder="Email" 
+                  type="text" 
+                  onChange={(e)=>{setUsername(e.target.value)}}
+
+                  />
                   <label>Password</label>
-                  <Input placeholder="Password" type="password" />
+                  <Input 
+                  placeholder="Password" 
+                  type="password" 
+                  onChange={(e)=>setPassword(e.target.value)}
+                  />
                   <Button block className="btn-round" color="danger">
                     Register
                   </Button>
