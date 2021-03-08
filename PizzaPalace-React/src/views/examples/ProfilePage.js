@@ -16,7 +16,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 
 // reactstrap components
 import {
@@ -38,9 +37,27 @@ import {
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function ProfilePage() {
+const ProfilePage=() =>{
+  const [currentUser,setCurrentUser]=React.useState(undefined);
   const [activeTab, setActiveTab] = React.useState("1");
+
+  console.log("blah")
+
+  useEffect(() => {
+   
+    console.log("blah")
+    console.log("blah")
+    console.log("blah")
+    console.log("blah")
+    console.log("blah")
+    console.log("blah")
+
+}, []);
+    
+      
 
   const toggle = (tab) => {
     if (activeTab !== tab) {
@@ -55,7 +72,10 @@ function ProfilePage() {
       document.body.classList.remove("landing-page");
     };
   });
+
+
   return (
+    
     <>
       <ExamplesNavbar />
       <ProfilePageHeader />
@@ -194,6 +214,6 @@ function ProfilePage() {
       <DemoFooter />
     </>
   );
-}
+};
 
 export default ProfilePage;

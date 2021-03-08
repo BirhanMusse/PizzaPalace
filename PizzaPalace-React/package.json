@@ -3,17 +3,21 @@
   "version": "1.2.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.21.1",
     "classnames": "2.2.6",
     "moment": "2.26.0",
     "node-sass": "4.14.1",
     "nouislider": "14.5.0",
     "react": "16.13.1",
     "react-bootstrap-switch": "15.5.3",
+    "react-bootstrap-validation": "^0.1.11",
     "react-datetime": "2.16.3",
     "react-dom": "16.13.1",
+    "react-native-check-btn": "^1.0.0",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
+    "react-validation": "^3.0.7",
     "reactstrap": "8.4.1"
   },
   "scripts": {

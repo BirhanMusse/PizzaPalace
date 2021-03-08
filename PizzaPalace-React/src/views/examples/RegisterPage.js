@@ -17,26 +17,90 @@
 
 */
 import React from "react";
-
+import AuthService from '../services/auth.service'
 // reactstrap components
 import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
+import CheckButton from "react-validation/build/button";
+
 
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 
 function RegisterPage() {
   const[registerPage, setRegisterPage]=React.useState(false);
-  const [Email, setEmail]=React.useState("");
+  const [email, setEmail]=React.useState("");
   const [username, setUsername]= React.useState("");
   const [password, setPassword]= React.useState("");
   const [loading, setLoading]= React.useState(false);
   const [message, setMessage]= React.useState("");
+  const [successful, setSuccessful]=React.useState(false);
   const [confirmPassword, setConfirmPassword]= React.useState("");
+  const [checkBtn, setCheckBtn]= React.useState("");
 
  function onUsernameChange(e) {
    setUsername(e.target.value)
    console.log("UsernameChanged!")
  }
+
+ 
+
+ const handleLogin= (e)=> {
+  e.preventDefault();
+
+  setMessage("");
+  setLoading(true);
+
+
+
+    AuthService.login(username, password).then(
+      () => {
+        window.location.reload();
+      },
+      error => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+          setLoading(false);
+          setMessage(resMessage);
+
+      }
+    );
+  
+}
+
+ const handleRegister = (e)=> {
+  console.log("handle register called")
+
+
+  
+    AuthService.register(
+      username,
+      email,
+      password
+    ).then(
+      response => {
+        setSuccessful(true);
+        setMessage(response.data.message)
+      },
+      error => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+          setSuccessful(false);
+          setMessage(resMessage)
+
+      }
+    );
+  
+}
 
 
   document.documentElement.classList.remove("nav-open");
@@ -58,6 +122,7 @@ function RegisterPage() {
         }}
       >
         <div className="filter" />
+
         <Container>
    
           {registerPage?
@@ -68,6 +133,8 @@ function RegisterPage() {
               <Card className="card-register ml-auto mr-auto">
                 <h3 className="title mx-auto">Register </h3>
                 <a onClick={()=> setRegisterPage(!RegisterPage)} class="registerNow">Click here to sign in!</a>
+                <button onClick={(e)=>handleRegister(e)}>buttton</button>
+
                 <div className="social-line text-center">
                   <Button
                     className="btn-neutral btn-just-icon mr-1"
@@ -94,13 +161,18 @@ function RegisterPage() {
                     <i className="fa fa-twitter" />
                   </Button>
                 </div>
-                <Form className="register-form">
+                <Form  className="register-form">
                   <label>Email</label>
-                  <Input placeholder="Email" type="text" />
+                  <Input 
+                  placeholder="Email" 
+                  type="text"
+                  onChange={(e)=>{setEmail(e.target.value);console.log(email)}}
+
+                  />
                   <label>Username</label>
                   <Input 
                   placeholder="Username" 
-                  type="password" 
+                  type="text" 
                   onChange={(e)=>{setUsername(e.target.value);console.log(e.target.value)}}
                   />
                   <label>Password</label>
@@ -170,7 +242,7 @@ function RegisterPage() {
                     <i className="fa fa-twitter" />
                   </Button>
                 </div>
-                <Form 
+                <Form onSubmit={(e)=>handleLogin(e)}
                                   className="register-form">
                   <label>Emailll</label>
                   <Input 
@@ -186,9 +258,9 @@ function RegisterPage() {
                   onChange={(e)=>setPassword(e.target.value)}
                   />
                   <Button block className="btn-round" color="danger">
-                    Register
+                    Login
                   </Button>
-                </Form>
+                </Form >
                 <div className="forgot">
                   <Button
                     className="btn-link"
