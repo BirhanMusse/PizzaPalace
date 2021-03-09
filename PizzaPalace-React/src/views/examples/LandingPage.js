@@ -36,7 +36,7 @@ import {
 } from "reactstrap";
 
 // core components
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
+import ExamplesNavbar from "components/Navbars/ExamplesNavbar";
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 import Categories from './Categories';
@@ -53,7 +53,7 @@ function LandingPage() {
   function toggle(){console.log("Langing toggle called")};
   return (
     <>
-      <IndexNavbar />
+      <ExamplesNavbar />
       <LandingPageHeader />
       <div className="main"
       >
@@ -63,8 +63,8 @@ function LandingPage() {
           <Container>
             <h2 className="title">Menu</h2>
 
-<Categories onclick={toggle} title="Appetizers"/>
 <Categories onclick={toggle} title="Entrees"/>
+<Categories onclick={toggle} title="Desserts"/>
 
 
             {/* <Categories title="Entrees"/> */}

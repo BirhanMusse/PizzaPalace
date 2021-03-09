@@ -42,7 +42,8 @@ function RegisterPage() {
    console.log("UsernameChanged!")
  }
 
- 
+ const user = AuthService.getCurrentUser();
+ console.log(user);
 
  const handleLogin= (e)=> {
   e.preventDefault();

@@ -18,19 +18,26 @@ import SelectedItemModal from "views/examples/SelectedItemModal.js";
 import AuthService from "./views/services/auth.service"
 
 const App = () => {
-    const [currentUser,setCurrentUser] = React.useState(undefined);
+    const [currentUser, setCurrentUser] = React.useState(undefined);
+    const [blah, setBlah] = React.useState("blah not set");
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
 
         if (user) {
-            setCurrentUser(user);
-            console.log("USER LOGGED IN")
-            console.log("USER LOGGED IN")
+            // console.log(blah);
+            // setBlah("BLAH HAS BEEN SET");
+            // console.log(blah);
+            // setCurrentUser(user);
+            // console.log(user);
+            // console.log(currentUser);
+
+            // console.log("USER LOGGED IN")
+            console.log(user)
             console.log("USER LOGGED IN")
         } else {
-            console.log("NO CURRENT USER")
-            console.log("NO CURRENT USER")
+           // console.log("NO CURRENT USER")
+            // console.log("NO CURRENT USER")
             console.log("NO CURRENT USER")
 
         }

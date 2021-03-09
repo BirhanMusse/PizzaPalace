@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		/*
 		 * DEFINITLY REMOVE THE BELLOW THING BEFORE GOING TO PROD
 		 */
-		//.antMatchers("/**").permitAll()
+		.antMatchers("/**").permitAll()
 		.anyRequest().authenticated();
 		
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

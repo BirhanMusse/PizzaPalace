@@ -20,7 +20,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 // nodejs library that concatenates strings
 import classnames from "classnames";
-
+import AuthService from "../../views/services/auth.service"
 // reactstrap components
 import {
   Collapse,
@@ -33,6 +33,11 @@ import {
 } from "reactstrap";
 
 function ExamplesNavbar() {
+const user=AuthService.getCurrentUser();
+
+const route= window.location.pathname
+
+
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
@@ -70,7 +75,19 @@ function ExamplesNavbar() {
     >
       <Container>
         <div className="navbar-translate">
-          <NavbarBrand
+          {user? 
+            <NavbarBrand
+           onClick={()=>{console.log("HOLY CRAP ONCLICK CALLED");AuthService.logout()}}
+            data-placement="bottom"
+            to="/landing-page"
+            title="Coded by Creative Tim"
+            tag={Link}>
+            Logout
+            </NavbarBrand> 
+            
+
+            :
+            <NavbarBrand
             data-placement="bottom"
             to="/index"
             target="_blank"
@@ -79,6 +96,8 @@ function ExamplesNavbar() {
           >
             Login/profile ExamplesNavbar
           </NavbarBrand>
+          
+          }
           <button
             aria-expanded={navbarCollapse}
             className={classnames("navbar-toggler navbar-toggler", {
@@ -91,25 +110,34 @@ function ExamplesNavbar() {
             <span className="navbar-toggler-bar bar3" />
           </button>
         </div>
+        { route==="/landing-page"? "":
+              <NavbarBrand
+              className="justify-content-right"
+              tag={Link}
+              to="/login-page"> Go to Order Page</NavbarBrand>
+            }
         <Collapse
           className="justify-content-end"
           navbar
           isOpen={navbarCollapse}
         >
-          <Nav navbar>
-            <NavItem>
-              <NavLink to="/index" tag={Link}>
-                <i className="nc-icon nc-layout-11" /> Components
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                href="https://demos.creative-tim.com/paper-kit-react/#/documentation?ref=pkr-examples-navbar"
-                target="_blank"
+
+
+
+{user?
+            <NavbarBrand
+            data-placement="bottom"
+            title="Coded by Creative Tim"
+            tag={Link}
+              to="/profile-page"
               >
-                <i className="nc-icon nc-book-bookmark" /> Documentation
-              </NavLink>
-            </NavItem>
+                <i className="nc-icon nc-book-bookmark" /> View Profile
+              
+            </NavbarBrand>:""
+            }
+
+          <Nav navbar>
+            
             <NavItem>
               <NavLink
                 data-placement="bottom"

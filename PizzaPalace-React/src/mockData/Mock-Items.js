@@ -1,29 +1,44 @@
 
     
     
-const Toppings = [
+const MockItems = [
     {
         "id": 1,
-        "price": 1,
-        "name": "pepperoni"
+        "toppings": [],
+        "cart": null,
+        "name": "Pizza",
+        "category": "Entrees",
+        "price": 10,
+        "points": 10,
+        "customized": null,
+        "specialReq": null
+    },
+    {
+        "id": 1,
+        "toppings": [],
+        "cart": null,
+        "name": "Wings",
+        "category": "Entrees",
+        "price": 10,
+        "points": 10,
+        "customized": null,
+        "specialReq": null
     },
     {
         "id": 2,
-        "price": 1,
-        "name": "sausage"
-    },
-    {
-        "id": 3,
-        "price": 1,
-        "name": "onion"
-    },
-    {
-        "id": 4,
-        "price": 1,
-        "name": "chicken"
-    },
+        "toppings": [],
+        "cart": null,
+        "name": "Ice Cream",
+        "category": "Desserts",
+        "price": 5,
+        "points": 5,
+        "customized": null,
+        "specialReq": null
+    }
 ]
 
-export default Toppings
+   
+
+export default MockItems
 
 

@@ -36,13 +36,7 @@ public class Item {
 			)
 	List <Topping> toppings;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "Item_Category",
-			joinColumns = @JoinColumn(name="item_id"),
-			inverseJoinColumns = @JoinColumn(name = "category_id")
-			)
-	private Category category;
+
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -51,6 +45,12 @@ public class Item {
 
 	@Column
 	private String name;
+	
+	
+
+	@Column
+	private String category;
+
 	 
 	@Column
 	private Integer price;
@@ -61,6 +61,19 @@ public class Item {
 	
 	@Column
 	private String SpecialReq;
+	
+
+
+	public String getCustomized() {
+		return customized;
+	}
+
+	public void setCustomized(String customized) {
+		this.customized = customized;
+	}
+
+	@Column
+	private String customized;
 	
 	public Integer getId() {
 		return id;
@@ -87,11 +100,11 @@ public class Item {
 	}
 
 
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 

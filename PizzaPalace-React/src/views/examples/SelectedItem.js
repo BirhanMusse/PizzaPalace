@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Row } from 'reactstrap';
 import SelectedTopping from './SelectedTopping';
-import Toppings from '../../mockData/Mock-Items';
+import Toppings from '../../mockData/Mock-Toppings';
 const Item = 
     {
         id: 8,

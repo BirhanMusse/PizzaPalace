@@ -19,7 +19,7 @@ const Item = (props) => {
   return (
 
                   
-                               <Card className="card-profile card-plain" onClick={props.toggle}>
+                               <Card className="card-profile card-plain" onClick={props.onClick}>
 
                   <div className="card-avatar">
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>

@@ -1,6 +1,7 @@
 import React from 'react'
 import Item from './Item'
 import SelectedItemModal from './SelectedItemModal'
+import MockItems from '../../mockData/Mock-Items'
 import {
     Button,
     Card,
@@ -11,44 +12,40 @@ import {
     Col,
   } from "reactstrap";
   const Meatlovers = ["pepperoni","sausage","bacon","chicken","onions","bananas","tomatoes","olives"]
-
+  const getItems = MockItems;
 
 
 const Items = (props) => {
+    const [selectedItem, setSelectedItem] = React.useState();
     const [showItem, setShowItem] = React.useState(false);
     const toggle = () => {console.log("toggle called"); setShowItem(!showItem); console.log("showItem=" + showItem)} ;
-    const stringy = "stttttttttttttttt"
+    const thisItem = ()=>{console.log("Item selected")};
+    const onClick = (item)=> {toggle();thisItem();}
     function closeModal(){
         setShowItem(!showItem)
     }
     return (
+        <div>
         <Row>
-                          <Col md="3">
-
-
-                          <Item name = "pizza" toggle={toggle} toppings={Meatlovers}/>  
-             
-             
-             
-              </Col>
-              <Col md="3">
-
-              <Item name = "Sub" toggle={toggle} toppings={Meatlovers}/>  
-              </Col>
-
-              <Col md="3">
-              <Item name = "pasta" toggle={toggle} toppings={Meatlovers}/>  
-              </Col>
-
-
-              <Col md="3">
-              <div onClick={() => {console.log("clicked")}} >
-              <Item name = "salad"  toggle={toggle} toppings={Meatlovers}/>  
-              </div>
-              </Col>
-              <SelectedItemModal onClose={closeModal} stringy= {stringy} show={showItem} />
+            { getItems.map((item)=> {return(props.title===item.category ?
+            
+            
+            
+<Col md="3">
+                          <Item item={item} name = {item.name} onClick={onClick(item)} toppings={Meatlovers}/>  
+              </Col> : 
+            "")
+        
+        
+        
+        }
+              )
+            }
 
         </Row>
+        <SelectedItemModal onClose={closeModal} show={showItem} />
+
+        </div>
         
     )
 }

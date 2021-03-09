@@ -39,23 +39,14 @@ import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import AuthService from "views/services/auth.service";
 
 const ProfilePage=() =>{
   const [currentUser,setCurrentUser]=React.useState(undefined);
   const [activeTab, setActiveTab] = React.useState("1");
+const user = AuthService.getCurrentUser();
 
-  console.log("blah")
 
-  useEffect(() => {
-   
-    console.log("blah")
-    console.log("blah")
-    console.log("blah")
-    console.log("blah")
-    console.log("blah")
-    console.log("blah")
-
-}, []);
     
       
 
@@ -80,6 +71,7 @@ const ProfilePage=() =>{
       <ExamplesNavbar />
       <ProfilePageHeader />
       <div className="section profile-content">
+{!user? <div>Sorry Buddy PLZ Login</div>:
         <Container>
           <div className="owner">
             <div className="avatar">
@@ -91,7 +83,7 @@ const ProfilePage=() =>{
             </div>
             <div className="name">
               <h4 className="title">
-                Jane Faker <br />
+                {user.username} <br />
               </h4>
               <h6 className="description">Music Producer</h6>
             </div>
@@ -210,6 +202,8 @@ const ProfilePage=() =>{
             </TabPane>
           </TabContent>
         </Container>
+    }
+    
       </div>
       <DemoFooter />
     </>
