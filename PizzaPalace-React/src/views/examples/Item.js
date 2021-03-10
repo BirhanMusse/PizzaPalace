@@ -15,11 +15,16 @@ const                 name="lol";
 const Meatlovers= ["pepperoni","sausage","bacon","chicken","onions"]
 
 const Item = (props) => {
+  const [showItem, setShowItem] = React.useState(false);
+const toggle = () => {; setShowItem(!showItem); console.log("showItem=" + showItem)} ;
+function closeModal(){
+  setShowItem(!showItem)
+}
   const toppings = props.toppings.map((toppings,index)=> index==0?toppings:', '+toppings);
   return (
 
-                  
-                               <Card className="card-profile card-plain" onClick={props.onClick}>
+                <div>  
+                               <Card className="card-profile card-plain" onClick={toggle}>
 
                   <div className="card-avatar">
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
@@ -32,7 +37,7 @@ const Item = (props) => {
                   <CardBody>
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
                       <div className="author">
-                        <CardTitle tag="h4">{props.name}</CardTitle>
+                        <CardTitle tag="h4">{props.name} (${props.item.price})</CardTitle>
                         <h6 className="card-category">Product Manager</h6>
                       </div>
                     </a>
@@ -72,7 +77,8 @@ const Item = (props) => {
                   </CardFooter>
                 </Card>
               
-        
+              <SelectedItemModal item= {props.item} onClose={closeModal} show={showItem} />
+</div>
     )
 }
 

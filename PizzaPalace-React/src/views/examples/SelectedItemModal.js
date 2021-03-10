@@ -14,7 +14,7 @@ const open = () => setShow('show')
   <span onClick={props.onClose} class="topping-close">&times;</span>
   <div class="asasasasasasasasasass" key={props.show}>whaaa {props.show?"a":"b"}</div>
 
-  <SelectedItem/>
+  <SelectedItem item={props.item}/>
 </div>
 
 </div>

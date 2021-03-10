@@ -67,6 +67,17 @@ public class Cart {
 			)
 	private List <Item> item;
 	
+	@Column
+	private String wasOrdered="NO";
+	
+	public String getWasOrdered() {
+		return wasOrdered;
+	}
+
+	public void setWasOrdered(String wasOrdered) {
+		this.wasOrdered = wasOrdered;
+	}
+
 	public List<Item> getItem() {
 		return item;
 	}

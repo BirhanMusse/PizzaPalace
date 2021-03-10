@@ -18,9 +18,9 @@ import {
 const Items = (props) => {
     const [selectedItem, setSelectedItem] = React.useState();
     const [showItem, setShowItem] = React.useState(false);
-    const toggle = () => {console.log("toggle called"); setShowItem(!showItem); console.log("showItem=" + showItem)} ;
+    const toggle = () => {; setShowItem(!showItem); console.log("showItem=" + showItem)} ;
     const thisItem = ()=>{console.log("Item selected")};
-    const onClick = (item)=> {toggle();thisItem();}
+    const onClick = ()=> {toggle();thisItem();}
     function closeModal(){
         setShowItem(!showItem)
     }
@@ -32,7 +32,7 @@ const Items = (props) => {
             
             
 <Col md="3">
-                          <Item item={item} name = {item.name} onClick={onClick(item)} toppings={Meatlovers}/>  
+                          <Item item={item} name = {item.name} toggle={toggle} toppings={Meatlovers}/>  
               </Col> : 
             "")
         
@@ -43,7 +43,6 @@ const Items = (props) => {
             }
 
         </Row>
-        <SelectedItemModal onClose={closeModal} show={showItem} />
 
         </div>
         
