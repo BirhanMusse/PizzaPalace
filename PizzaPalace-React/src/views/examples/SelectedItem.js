@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Row } from 'reactstrap';
 import SelectedTopping from './SelectedTopping';
 import Toppings from '../../mockData/Mock-Toppings';
+import GuestCartService from '../services/guest-cart.service';
 const Item = 
     {
         id: 8,
@@ -61,6 +62,9 @@ console.log("")
       console.log(checkbox, 'is selected.');
     }
     console.log("total is "+total)
+    console.log(props.item)
+    GuestCartService.addItem(props.item);
+    console.log (GuestCartService.getItems())
   }
 
 

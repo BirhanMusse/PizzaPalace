@@ -28,10 +28,14 @@ public class Cart {
     @Column(name = "id")
 	private Integer id;
 	
-	@JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "customer_id", referencedColumnName = "id")
+	@JsonBackReference(value = "cart-customer")
+	@OneToOne(mappedBy = "cart")
 	private Customer customer;
+	
+	@JsonBackReference(value = "cart-orderHistory")
+    @ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "orderHistory_id", referencedColumnName = "id")
+	private OrderHistory orderHistory;
 	
 	
 	@Column(name = "Order_date")
@@ -67,17 +71,8 @@ public class Cart {
 			)
 	private List <Item> item;
 	
-	@Column
-	private String wasOrdered="NO";
+
 	
-	public String getWasOrdered() {
-		return wasOrdered;
-	}
-
-	public void setWasOrdered(String wasOrdered) {
-		this.wasOrdered = wasOrdered;
-	}
-
 	public List<Item> getItem() {
 		return item;
 	}

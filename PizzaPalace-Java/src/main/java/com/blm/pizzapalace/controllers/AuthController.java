@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blm.pizzapalace.models.Cart;
 import com.blm.pizzapalace.models.Customer;
 import com.blm.pizzapalace.models.ERole;
+import com.blm.pizzapalace.models.OrderHistory;
 import com.blm.pizzapalace.models.Role;
 import com.blm.pizzapalace.repository.CustomerRepository;
 import com.blm.pizzapalace.repository.RoleRepository;
@@ -113,6 +115,8 @@ public class AuthController {
 		}
 
 		user.setRoles(roles);
+		user.setCart(new Cart());
+		user.setOrderHistory(new OrderHistory());
 		customerRepo.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

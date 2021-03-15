@@ -18,6 +18,7 @@
 */
 import React from "react";
 import LoginForm from './LoginForm';
+import AuthService from '../../views/services/auth.service'
 
 // reactstrap components
 import { Button, Container } from "reactstrap";
@@ -26,7 +27,8 @@ import { Button, Container } from "reactstrap";
 
 function LandingPageHeader() {
   let pageHeader = React.createRef();
-
+let user =AuthService.getCurrentUser();
+console.log(user);
   // React.useEffect(() => {
   //   if (window.innerWidth < 991) {
   //     const updateScroll = () => {
@@ -55,7 +57,7 @@ const loginURl = '/register-page';
         <Container>
           <div className="motto text-center">
 <h1>Welcome to Pizza Palace!</h1>
-<h2 > Please <a href={loginURl}>Login</a> or Order as a guest</h2>
+{user?<h2>hello {user.username}! Nice to have you back</h2>: <h2 > Please <a href={loginURl}>Login</a> or Order as a guest</h2>}
             <br />
           </div>
         </Container>

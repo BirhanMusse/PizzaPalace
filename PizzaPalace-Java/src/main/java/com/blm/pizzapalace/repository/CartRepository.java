@@ -11,5 +11,5 @@ import com.blm.pizzapalace.models.Item;
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 	public Cart findByItem(Item item);
 
-	public List<Cart> findByCustomer_Id(Integer id);
+	public Cart findByCustomer_Id(Integer id);
 }

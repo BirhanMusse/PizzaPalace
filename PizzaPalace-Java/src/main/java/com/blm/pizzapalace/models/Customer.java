@@ -1,6 +1,5 @@
 package com.blm.pizzapalace.models;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,11 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="CUSTOMER")
@@ -28,9 +29,10 @@ public class Customer {
 	@Column(name="id")
 	private Integer id;
 
-	@JsonManagedReference
-	@OneToMany (mappedBy = "customer")
-	private List<Cart> carts;
+	@JsonManagedReference(value = "cart-customer")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_id")
+	private Cart cart;
 	
 
 	
@@ -42,11 +44,24 @@ public class Customer {
 			)
 	private Set<Role> roles = new HashSet<>();
 	
+	@JsonManagedReference(value = "customer-orderHistory")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "order_id")
+	@NotNull
+	private OrderHistory orderHistory;
 	
+	public OrderHistory getOrderHistory() {
+		return orderHistory;
+	}
+
+	public void setOrderHistory(OrderHistory orderHistory) {
+		this.orderHistory = orderHistory;
+	}
+
 	@Column
 	private String name;
 	
-	@Column
+	@Column(unique = true)
 	private String username;
 	
 	@Column
@@ -111,12 +126,14 @@ public class Customer {
 		this.email = email;
 	}
 
-	public List<Cart> getCarts() {
-		return carts;
+	
+
+	public Cart getCart() {
+		return cart;
 	}
 
-	public void setCarts(List<Cart> carts) {
-		this.carts = carts;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	public Set<Role> getRoles() {
